@@ -1,0 +1,39 @@
+.grid-container{
+    width:100%;
+    display:grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-auto-rows: minmax(100px,auto);
+    grid-template-areas: 
+    "n n n n n n n n n n n n"
+    "m m m m m m m m m m m m";
+}
+
+
+#navbar{
+    grid-area: n;
+}
+
+
+#main-doc{
+    grid-area:m;
+}
+
+@media screen and (min-width:900px){
+    .grid-container{
+        width:100%;
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-auto-rows: minmax(300px,auto);
+        grid-template-areas: 
+        "n n n m m m m m m m m m"
+        "n n n m m m m m m m m m";
+    }
+    
+    #navbar{
+        grid-area: n;
+    }
+    
+    #main-doc{
+        grid-area:m;
+    }
+}

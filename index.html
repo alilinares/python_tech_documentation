@@ -1,0 +1,277 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - OOP </title>
+    <!-- CSS links -->
+    <link rel="stylesheet" href="styles/grid.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <div class="grid-container">
+
+        <nav id="navbar">
+            <header class="nav-head">
+                <h1> Object Oriented Programming with Python </h1>
+            </header>
+            <div class="toc">
+                <!--table of contents-->
+                <a class="nav-link" href="#introduction"> Introduction </a>
+                <a class="nav-link" href="#classes"> Classes</a>
+                <a class="nav-link" href="#objects"> Objects </a>
+                <a class="nav-link" href="#application"> Application </a>
+                <a class="nav-link" href="#inheritance"> Inheritance </a>
+                <a class="nav-link" href="#conclusion"> Conclusion </a>
+                <a class="nav-link" href="#reference"> Reference </a>
+                <div class="third-party-logos">
+                    <a href="https://www.python.org" alt="python offical website" title="Offical Python Site"
+                        target="_blank"><i class="fab fa-python"></i></a>
+                </div>
+            </div>
+        </nav>
+        
+        <main id="main-doc">
+            <section id="introduction" class="main-section">
+                <header>
+                    <h2> Introduction </h2>
+                </header>
+                <p> Object Oriented Programming (<strong> OOP </strong>) is a programming paradigm. This programming perspective
+                    aids us to model real world things into code and solve complex problems. A good majority of general purpose programming
+                    languages make use of it. Interestingly, Python is built via the OOP way. </p>
+                <p> The following are required fundamental knowledge prerequisites: </p>
+                <ul>
+                    <li> Primitive data types</li>
+                    <li> Mathematical and boolean operators </li>
+                    <li> Variables</li>
+                    <li> Arrays </li>
+                    <li> Functions </li>
+                    <li> While and For loops</li>
+                </ul>
+                <p>
+                    You can download the raw source code <a href="python/bank.py" download="" >here</a>
+                </p>
+
+            </section>
+            <section id="classes" class="main-section">
+                <header>
+                    <h2> Classes </h2>
+                </header>
+                <p> OOP helps us resemble physical things into code. Which in turn means, we are making a new data type or classifying something. Take for example two dogs, Balto and Brody. Both share common characteristics and behaviours of any general <strong>dog</strong>. That is, Balto and Brody are both <i>instances</i> of class Dog.</p>
+                <p> Below is a simple blueprint for the concept <i>Dog</i></p>
+<code class="code-example"># declare a new class       
+<span class="green">class Dog:</span>
+''' Defining a Dog '''
+
+    # characteristics
+<span class="purple">    def __init__(self,name,age,color):
+    self.dog_name = name
+    self.dog_age = age
+    self.dog_color = color
+</span>    
+    #behaviours
+<span class="orange">    def bark(self):
+    ''' Make dog bark'''
+        return "woof, woof"
+    
+    def sit(self):
+    ''' Make dog sit'''
+        return f"{self.dog_name}" is now sitting."</span></code>
+                <p> In python <code>__init__()</code> is basically a constructor for instances (Balto and Brody) of classes. When we create a new dog, we call the constructor and pass it a name, age and color. These variables in classes are known as <i>attributes</i>. The keyword <i>self</i> is a reference to the instance or <i> object</i> that is created. </p>
+                <p> We also define behaviours or <i>methods</i> for classes. We narrow down what is most common for any dog to have; that it can bark and sit. </p>
+            </section>
+            <section id="objects" class="main-section">
+                <header>
+                    <h2> Objects </h2>
+                </header>
+                <p> Objects are instances of Classes. They are unique in state, but share commonality in attributes and methods, which are inherited by their blueprint or class. </p>
+
+                <p> Continuing with the Dog class, below is how you would go about creating an object and using it:</p>
+<code class="code-example">#creating an object of Dog
+<span class="green">dog_01 = Dog('balto',4,'brown')
+</span>
+#finding out dog_01 name
+<span class="purple">print(dog_01.name)
+</span>
+#using inherited methods
+<span class="orange">print(dog_01.bark())</span></code>
+                <p> Above, we <i>instantiated</i> a dog object programmatically. We gave it attributes and accessed <i>dog_01</i> name. Additionally, we told the dog to 'bark'.</p>
+                <p> The following output would be this: </p>
+<code class="code-example terminal-output">>>> <strong>balto</strong>
+>>> <strong>woof,woof</strong>    
+</code>
+            </section>
+            <section id="application" class="main-section">
+                <header>
+                    <h2> Application </h2>
+                </header>
+                <p> As you get better with classes and objects you can begin to simulate real world situations into code. For example take a banking system. You have the ability to open up a bank; deposit and withdraw money and, check your balances and your profile. Let us put these into action: </p>
+<code class="code-example"><span class="green">class Bank():
+    '''A Simple Banking System'''</span>
+    <span class="purple">
+    def __init__(self,
+    fname,
+    account_num,
+    deposit=0):
+        self.user_name = fname.title()
+        self.account_number = account_num</span>
+        # implicit attributes<span class="purple">
+        self.balance = deposit
+        self.email = 'N/A'
+        self.telephone ='N/A'</span>
+
+    #methods<span class="orange">
+    def check_balance(self):
+        '''check user's balance'''
+        return self.balance
+
+    def deposit(self,amount):
+        '''deposit x amount'''
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self,amount):
+        '''withdraw some money'''
+        if self.balance - amount < 0:
+            print(f'Insufficent Funds')
+        else:
+            print(f'You withdrew {self.balance} from {self.account_number}')
+
+
+    def profile_info(self):
+        return f'''
+Account Number: {self.account_number}
+=======================
+Name: {self.user_name}
+Primary Telephone: {self.telephone}
+Email: {self.email} \n'''</span></code>
+                <p> A couple of things to note. You can have implicit attributes, making sure that that every instance instantiated is given a default value of some sort. Secondly, for security implications, it is important to have methods that modify the attributes in the background. <i>Abstracting</i> away unneccesary details for the user.</p>
+
+                <p>Always make sure to test your code:</p>
+<code class="code-example">user_01 = Bank('ali',1,0)
+
+print(user_01.user_name)
+
+# Depositing money
+# before
+print(user_01.check_balance())
+
+user_01.deposit(100)
+
+# after
+print(user_01.check_balance())
+
+#withdrawing too much
+user_01.withdraw(20000)
+
+# before
+print(user_01.profile_info())
+user_01.telephone = '999-999-999'
+
+# after
+print(user_01.profile_info())
+</code>
+            <p> The following should be the output:</p>
+<code class="code-example terminal-output">>>>
+    Ali
+    0
+    100
+    Insufficent Funds
+    
+    Account Number: 1
+    =======================
+    Name: Ali
+    Primary Telephone: N/A
+    Email: N/A 
+    
+    
+    Account Number: 1
+    =======================
+    Name: Ali
+    Primary Telephone: 999-999-999
+    Email: N/A 
+</code>
+            </section>
+            <section id="inheritance" class="main-section">
+                <header>
+                    <h2> Inheritance </h2>
+                </header>
+                <p> Classes can also have subclasses. In otherwords, the parent class can have child classes which inherit its attributes and methods, while the children can have their own as well. </p>
+                <p> For example, continuing from our simple banking system we can create subclasses: chequing and savings. Both of which need the ability that the parent class <i>Bank</i> has, while remaining separate in functionality.</p>
+
+                <p> Consider the following subclass Chequing: </p>
+<code class="code-example"><span class="green">class Chequing(Bank):</span>
+""" A simple chequing account"""
+
+# initialize parent/super class attr & meth with given child class attr & meth
+<span class="purple">
+    def __init__(self,
+    fname,account_num,
+    chequing_account_number,deposit=0):
+</span>
+    #pass instance args to parent constructor<span class="purple">
+    super().__init__(fname,
+    account_num,
+    deposit)</span>
+
+    # attributes unique to the child class Chequing<span class="purple">
+    self.cheq_acc_num = chequing_account_number
+    self.service_monthly_charge = 'basic'
+    self.transaction_number_limit = 6</span>
+
+    # child class methods
+    # overriding an inherited method<span class="orange">
+    def check_balance(self):
+        if self.service_monthly_charge == 'basic':
+            if self.balance < 2000:
+                self.balance -= 5.99
+                return self.balance
+            else:
+                return self.balance </span></code>
+                <p> A few of things to note. The child class must explicitly state what parent class its inheriting from at the outset. Secondly, when we create a chequing object, its attributes must be passed to the parent class constructor using <code>super()</code>- a reference to the parent class. And finally, we can override inherited methods via the same name and defining new rules.</p>
+                
+                <p> We test our code: </p>
+<code class="code-example">#instantiate an object
+    user_01 = Chequing('ali',1,100001,1000)
+
+#test
+    user_01.check_balance()
+    print(user_01.balance)
+</code>
+                <p> Output should be: </p>
+<code class="code-example terminal-output">>>>
+994.01
+</code>
+            </section>
+            <section id="conclusion" class="main-section">
+                <header>
+                    <h2> Conclusion </h2>
+                </header>
+                <p> Object Oriented Programming is an important programming paradigm because it aids programmers to solve complex problems. Your code is abstracted, clean and secure. All of which are important principles to programming in general. </p>
+                <p> I hope this technical documentation has helped you into becoming a better programmer. I encourage you to play with the code or better yet, improve it. See if you can make a savings account.</p>
+            </section>
+            <section id="reference" class="main-section">
+                <header>
+                    <h2> Reference </h2>
+                </header>
+                <p> All documentation from this page uses the concepts learned in: <i>Python Crash Course by Eric Matthes</i></p>
+                <p> You can also learn more about python via these links: </p>
+                <ul>
+                    <li><a href="https://docs.python.org/3/" alt="python offical documentation">Python Documentation </a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" alt="wiki-oop-page"> OOP-Wikipedia </a></li>
+                </ul>
+            </section>
+            
+        </main>
+    </div> <!-- closed grid container-->
+    <footer id="footer">
+        <p> 2020 &copy; Ali Linares </p>
+    </footer>
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/ec13c00532.js" crossorigin="anonymous"></script>
+    <!-- FREECODECAMP TESTS SCRIPT -->
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>
